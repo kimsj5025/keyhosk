@@ -14,8 +14,11 @@ function getSignal(){
 //신호 구분부
 
 function searchStartSiganl(){
+    const text_src = "안녕하세요 주문하겠습니다 콜라 1개랑 멘토스 2개 장바구니에 담아줘";
 
-
+    const splitText = text_src.split("주문하겠습니다");
+    const text = splitText[1].trim();
+    console.log(text);
 }
 
 //해석부
