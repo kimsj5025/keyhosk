@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>음성 인식</title>
+</head>
+<body>
+    <button onclick="sendSpeech();">음성 입력 시작</button>
+
+    <script>
+        var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition;
+        var savedSpeechResult = '';
+
+        function sendSpeech() {
+            var recognition = new SpeechRecognition();
+            recognition.lang = 'ko-KR';
+            recognition.interimResults = false;
+            recognition.continuous = false;
+            recognition.maxAlternatives = 1;
+
+            recognition.start();
+
+            recognition.onresult = function(event) {
+                savedSpeechResult = event.results[0][0].transcript.toLowerCase();
+                console.log('Confidence: ' + event.results[0][0].confidence);
+                console.log('Speech Result: ' + savedSpeechResult);
+            };
+
+            recognition.onerror = function(event) {
+                console.error('음성 인식 에러:', event.error);
+            };
+
+            recognition.onend = function(event) {
+                console.log('음성 입력 종료');
+            };
+        }
+    </script>
+</body>
+</html>
