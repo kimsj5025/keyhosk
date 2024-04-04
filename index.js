@@ -11,7 +11,13 @@ function getSignal(){
 //신호 구분부
 
 function searchStartSiganl(){
+    const text_src = "주문합니다";
+    const keyword = "주문";
 
+    const text = text_src.includes(keyword);
+    console.log(text);
+
+    
 
 }
 
