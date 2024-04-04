@@ -12,14 +12,21 @@ function getSignal(){
 }
 
 //신호 구분부
-
-function searchStartSiganl(){
-    const text_src = "안녕하세요 주문하겠습니다 콜라 1개랑 멘토스 2개 장바구니에 담아줘";
-
-    const splitText = text_src.split("주문하겠습니다");
-    const text = splitText[1].trim();
-    console.log(text);
+function searchStartSiganl(text){
+  let splitText = text.split("주문하겠습니다");
+  const debug_text = splitText[1].includes("주문할게요");
+  
+  if (debug_text === true) {
+    splitText = splitText[1].split("주문할게요")[0].trim();
+  } else {
+    splitText = splitText[1].trim();
+  }
+  
+  return splitText;
 }
+
+const text = searchStartSiganl(text_src)
+console.log(text);
 
 //해석부
 
